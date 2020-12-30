@@ -17,14 +17,7 @@ public class DayOfWeek extends DayScheduleDecorator {
 
     @Override
     public boolean isWorkingDay() {
-        return day.isWorkingDay() && workingDayOfWeekRetreiver.test(day);
-    }
-
-    @Override
-    public String toString() {
-        return "DayOfWeek {" +
-                "date=" + day.getDate() +
-                ", workingDay=" + isWorkingDay() +
-                '}';
+        return day.isWorkingDay() &&
+                workingDayOfWeekRetreiver.test(day);
     }
 }

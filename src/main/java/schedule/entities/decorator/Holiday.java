@@ -5,8 +5,7 @@ import schedule.retriever.HolidayRetriever;
 
 public class Holiday extends DayScheduleDecorator {
     private final Day day;
-
-    private HolidayRetriever holidayRetriever;
+    private final HolidayRetriever holidayRetriever;
 
     public Holiday(Day day) {
         super(day.getDate());
@@ -16,14 +15,7 @@ public class Holiday extends DayScheduleDecorator {
 
     @Override
     public boolean isWorkingDay() {
-        return day.isWorkingDay() && !holidayRetriever.test(day);
-    }
-
-    @Override
-    public String toString() {
-        return "Holiday {" +
-                "date=" + day.getDate() +
-                ", workingDay=" + isWorkingDay() +
-                '}';
+        return day.isWorkingDay() &&
+                !holidayRetriever.test(day);
     }
 }

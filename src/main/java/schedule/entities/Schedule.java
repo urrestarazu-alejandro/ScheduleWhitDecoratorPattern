@@ -1,7 +1,9 @@
 package schedule.entities;
 
+import schedule.entities.decorator.ChineseHoliday;
 import schedule.entities.decorator.DayOfWeek;
 import schedule.entities.decorator.Holiday;
+import schedule.entities.iterator.ScheduleIterator;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -9,25 +11,56 @@ import java.util.Date;
 import java.util.List;
 
 public class Schedule {
-    List<Day> days;
+    private List<Day> days;
+    private Integer size;
+    private Date initialDate;
+    private boolean isChinese;
 
-    public Schedule(Date initialDate, int size) {
+    public Schedule(Date initialDate, int size, boolean isChinese) {
+        this.size = size;
+        this.initialDate = initialDate;
+        this.isChinese = isChinese;
+    }
+
+    /**
+     * a day generator
+     *
+     * @return
+     */
+    public List<Day> getDays() {
         days = new ArrayList<>();
-        for (int i = 0; i < size; i++) {
-            Day day = getDayWhitDecorators(initialDate, i);
+
+        for (int i = 0; i < this.size; i++) {
+            Day day = getDayWhitDecorators(addDays(this.initialDate, i));
 
             days.add(day);
         }
+
+        return days;
     }
 
-    private Day getDayWhitDecorators(Date initialDate, int i) {
-        Day day = new Day(addDays(initialDate, i));
+    /**
+     * Applies decorators
+     *
+     * @param creation
+     * @return
+     */
+    private Day getDayWhitDecorators(Date creation) {
+        Day day = new Day(creation);
+
         day = new Holiday(day);
         day = new DayOfWeek(day);
+
+        if (isChinese) {
+            day = new ChineseHoliday(day);
+        }
 
         return day;
     }
 
+    /**
+     * sum an amount of days to a date
+     */
     public static Date addDays(Date date, int days) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
@@ -35,10 +68,10 @@ public class Schedule {
         return calendar.getTime();
     }
 
-
-    public void print() {
-        for (Day day : days) {
-            System.out.println(day.toString());
+    public void show(ScheduleIterator scheduleIterator) {
+        for (ScheduleIterator it = scheduleIterator; it.hasNext(); ) {
+            Day day = it.next();
+            day.show();
         }
     }
 }

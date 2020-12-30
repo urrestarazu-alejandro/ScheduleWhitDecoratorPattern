@@ -6,14 +6,14 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.function.Predicate;
 
-public class HolidayRetriever implements Predicate<Day> {
+public class ChineseHolidayRetriever implements Predicate<Day> {
 
-    public static final LocalDate PERONCHO_DAY = LocalDate.of(2021, 1, 1);
+    public static final LocalDate CHINESE_NEW_YEAR = LocalDate.of(2021, 1, 7);
 
     @Override
     public boolean test(Day day) {
         LocalDate localDay = day.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
-        return localDay.isEqual(PERONCHO_DAY);
+        return localDay.isEqual(CHINESE_NEW_YEAR);
     }
 }
