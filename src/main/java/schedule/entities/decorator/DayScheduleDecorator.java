@@ -1,16 +1,16 @@
 package schedule.entities.decorator;
 
-import schedule.entities.Day;
-
 import java.util.Date;
-import java.util.List;
 
-
+/*
+ * Decorator
+ */
 public abstract class DayScheduleDecorator extends Day {
     protected DayScheduleDecorator(Date date) {
         super(date);
     }
 
+    // Single responsibility
     @Override
     public abstract boolean isWorkingDay();
 }

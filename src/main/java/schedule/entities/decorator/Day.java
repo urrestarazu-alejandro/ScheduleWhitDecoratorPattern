@@ -1,10 +1,13 @@
-package schedule.entities;
+package schedule.entities.decorator;
 
 import lombok.Getter;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/*
+ * Component
+ */
 @Getter
 public class Day {
     public static final String VERTICAL_PIPE = " | \t";

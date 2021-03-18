@@ -1,6 +1,7 @@
 package schedule.entities;
 
 import schedule.entities.decorator.ChineseHoliday;
+import schedule.entities.decorator.Day;
 import schedule.entities.decorator.DayOfWeek;
 import schedule.entities.decorator.Holiday;
 import schedule.entities.iterator.ScheduleIterator;
@@ -46,8 +47,10 @@ public class Schedule {
      * @return
      */
     private Day getDayWhitDecorators(Date creation) {
+        // Concrete component
         Day day = new Day(creation);
 
+        //Stack of decorators
         day = new Holiday(day);
         day = new DayOfWeek(day);
 
@@ -69,6 +72,8 @@ public class Schedule {
     }
 
     public void show(ScheduleIterator scheduleIterator) {
+        System.out.println("Schedule (X indicates non-working day)");
+
         for (ScheduleIterator it = scheduleIterator; it.hasNext(); ) {
             Day day = it.next();
             day.show();

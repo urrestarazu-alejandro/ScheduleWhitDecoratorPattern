@@ -1,6 +1,6 @@
 package schedule.entities.iterator;
 
-import schedule.entities.Day;
+import schedule.entities.decorator.Day;
 import schedule.entities.Schedule;
 
 import java.util.Iterator;

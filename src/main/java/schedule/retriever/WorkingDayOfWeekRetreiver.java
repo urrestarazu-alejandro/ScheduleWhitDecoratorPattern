@@ -1,6 +1,6 @@
 package schedule.retriever;
 
-import schedule.entities.Day;
+import schedule.entities.decorator.Day;
 
 import java.util.Arrays;
 import java.util.Calendar;

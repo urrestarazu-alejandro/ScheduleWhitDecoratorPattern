@@ -1,9 +1,11 @@
 package schedule.entities.decorator;
 
 
-import schedule.entities.Day;
 import schedule.retriever.WorkingDayOfWeekRetreiver;
 
+/*
+ * Concrete decorator
+ */
 public class DayOfWeek extends DayScheduleDecorator {
     private final Day day;
 

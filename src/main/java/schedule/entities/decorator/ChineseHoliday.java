@@ -1,9 +1,10 @@
 package schedule.entities.decorator;
 
-import schedule.entities.Day;
 import schedule.retriever.ChineseHolidayRetriever;
-import schedule.retriever.HolidayRetriever;
 
+/*
+ * Concrete decorator
+ */
 public class ChineseHoliday extends DayScheduleDecorator {
     private final Day day;
 
